@@ -5,7 +5,8 @@
       const [name, setName] = useState('');
       const [username, setUsername] = useState('');
       //const loadUser = () => {};
-      const onSubmitSignUp = (event) => {event.preventDefault();
+      const onSubmitSignUp = (event) => {
+        event.preventDefault();
         fetch('http://localhost:3000/SignUp', {
           method: 'post',
           headers: {'Content-Type': 'application/json'},
@@ -19,13 +20,14 @@
           .then(respone => respone.json())
         .then(user =>{
           if (user.id){
-           // onRouteChange ('home')
+           onRouteChange ('home')
           }
         })
     }
         return(
             <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
             <main className="pa4 black-80">
+            <form className="measure" onSubmit={onSubmitSignUp}>
             <div className="measure">
             <fieldset
               id="sign_up"
@@ -47,7 +49,7 @@
               name="name"
               id="name"
               onChange={(e) => setName(e.target.value)}
-              autoComplete="name" 
+              autoComplete="name" required
             />
             </div>
             <div className="mt3">
@@ -56,7 +58,7 @@
               htmlFor="email-address"
             >
             Username
-            </label>u
+            </label>
             <input
             className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
             type="username, button"
@@ -79,7 +81,7 @@
             name="email-address"
             id="email-address"
             onChange={(e) => setEmail(e.target.value)}
-            autoComplete="email" 
+            autoComplete="email" required
           />
             </div>
             <div className="mv3">
@@ -95,27 +97,28 @@
              name="password"
              id="password"
              onChange={(e) => setPassword(e.target.value)}
-             autoComplete="current-password"
+             autoComplete="current-password" required
            />
             </div>
             </fieldset>
             <div className="">
             <input
-           onClick={() =>onRouteChange('home',{onSubmitSignUp}) }
+          // onClick={() =>onRouteChange('home',{onSubmitSignUp}) }
               className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
               type="button"
-              value="Signup"
+              value="Sign Up"
             />
       </div>
             <div className="lh-copy mt3">
             <p
-              onClick={() => onRouteChange('SignIn')}
+              onClick={() => onRouteChange('Signin')}
               className="f6 link dim black db pointer "
             >
-            siygnIn
+            signIn
             </p>
       </div>
             </div>
+            </form>
             </main>
           </article>
         )
